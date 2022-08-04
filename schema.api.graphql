@@ -55,7 +55,7 @@ interface IProfile {
     tweets: TweetsPage!
 }
 
-type MyProfile implements Profile {
+type MyProfile implements IProfile {
     id: ID!
     name: String!
     screenName: String!
@@ -137,7 +137,7 @@ type Reply implements ITweet {
 
 type ReTweet implements ITweet {
     id: ID!
-    progile: IProfile!
+    profile: IProfile!
     createdAt: AWSDateTime
     retweetOf: ITweet
 }
