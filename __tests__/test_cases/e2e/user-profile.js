@@ -39,7 +39,6 @@ describe('Given an authenticated user', () => {
         const regex = new RegExp(`https://${bucketName}.s3-accelerate.amazonaws.com/${user.username}/.*\.png\?.*Content-Type=image%2Fpng.*`)
         expect(uploadUrl).toMatch(regex)
         const filePath = path.join(__dirname, '../../data/homer-simpson-icon-256.png')
-
         await then.user_can_upload_image_to_url(uploadUrl, filePath, 'image/png')
         const downloadUrl = uploadUrl.split('?')[0]
         await then.user_can_download_image_from(downloadUrl)

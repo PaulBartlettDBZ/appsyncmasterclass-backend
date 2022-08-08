@@ -23,12 +23,11 @@ const user_can_upload_image_to_url = async (uploadUrl, filePath, contentType) =>
     const data = fs.readFileSync(filePath)
     await http({
         method: 'put',
-        uploadUrl,
+        url: uploadUrl,
         headers : {
             'Content-Type': contentType
-
         },
-        data
+        data: data
 
     })
     console.log('uploaded image to ', uploadUrl)
