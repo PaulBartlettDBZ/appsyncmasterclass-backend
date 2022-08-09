@@ -17,7 +17,7 @@ type Query {
 
 type Mutation {
     editMyProfile(newProfile: ProfileInput): MyProfile!
-    tweet(test: String!): Tweet!
+    tweet(text: String!): Tweet!
     like(tweetId: ID!): Boolean!
     unlike(tweetId: ID!): Boolean!
     retweet(tweetId: ID!): Boolean!
