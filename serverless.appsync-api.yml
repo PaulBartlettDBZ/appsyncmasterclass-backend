@@ -15,6 +15,9 @@ mappingTemplates:
     dataSource: getImageUploadUrlFunction
     request: false
     response: false
+  - type: Query
+    field: getTweets
+    dataSource: tweetsTable
 
   - type: Mutation
     field: editMyProfile
@@ -25,26 +28,31 @@ mappingTemplates:
     request: false
     response: false
 
+  #NESTED FIELDS
+  - type: Tweet
+    field: profile
+    dataSource: usersTable
+
 dataSources:
-    - type: NONE
-      name: none
-    - type: AMAZON_DYNAMODB
-      name: usersTable
-      config:
-        tableName: !Ref UserTable
-    - type: AMAZON_DYNAMODB
-      name: tweetsTable
-      config:
-        tableName: !Ref TweetsTable
-    - type: AMAZON_DYNAMODB
-      name: timelinesTable
-      config:
-        tableName: !Ref TimelinesTable
-    - type: AWS_LAMBDA
-      name: getImageUploadUrlFunction
-      config:
-        functionName: getImageUploadUrl        
-    - type: AWS_LAMBDA
-      name: tweetFunction
-      config:
-        functionName: tweet  
+  - type: NONE
+    name: none
+  - type: AMAZON_DYNAMODB
+    name: usersTable
+    config:
+      tableName: !Ref UserTable
+  - type: AMAZON_DYNAMODB
+    name: tweetsTable
+    config:
+      tableName: !Ref TweetsTable
+  - type: AMAZON_DYNAMODB
+    name: timelinesTable
+    config:
+      tableName: !Ref TimelinesTable
+  - type: AWS_LAMBDA
+    name: getImageUploadUrlFunction
+    config:
+      functionName: getImageUploadUrl
+  - type: AWS_LAMBDA
+    name: tweetFunction
+    config:
+      functionName: tweet
