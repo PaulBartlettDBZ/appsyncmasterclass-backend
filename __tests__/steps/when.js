@@ -137,7 +137,7 @@ const we_invoke_getImageUploadUrl = async (username, extension, contentType) =>{
       identity: {
         username
       },
-      arguements: {
+      arguments: {
         extension,
         contentType
       }
