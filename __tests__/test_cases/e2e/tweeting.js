@@ -99,6 +99,15 @@ describe('Given an authenticated user', () => {
             })
         })
 
+        it('Should see his tweet when he calls getLikes', async () => {
+                const { tweets, nextToken } = await when.a_user_calls_getLikes(user, user.username, 25)
+
+                expect(nextToken).toBeNull()
+                expect(tweets).toHaveLength(1)
+                expect(tweets[0].id).toEqual(tweet.id)
+                expect(tweets[0].liked).toEqual(true)
+        })
+
         describe("When he unlikes a tweet", () => {
             beforeAll(async () => {
                 await when.a_user_calls_unlike(user, tweet.id)
@@ -122,6 +131,16 @@ describe('Given an authenticated user', () => {
 
 
             })
+            it('Should not see the tweet when he calls getLikes', async () => {
+                const { tweets, nextToken } = await when.a_user_calls_getLikes(user, user.username, 25)
+
+                expect(nextToken).toBeNull()
+                expect(tweets).toHaveLength(0)
+
+        })
+
+
+
         })
 
 
