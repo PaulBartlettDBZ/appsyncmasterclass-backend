@@ -99,6 +99,31 @@ describe('Given an authenticated user', () => {
             })
         })
 
+        describe("When he unlikes a tweet", () => {
+            beforeAll(async () => {
+                await when.a_user_calls_unlike(user, tweet.id)
+            })
+
+            it('Should see tweet.liked as false', async () => {
+                const { tweets } = await when.a_user_calls_getMyTimeline(user, 25)
+
+                expect(tweets).toHaveLength(1)
+                expect(tweets[0].id).toEqual(tweet.id)
+                expect(tweets[0].liked).toEqual(false)
+
+            })
+
+            it('Should not be able to unlike the same tweet twice', async () => {
+                await expect( ()=> when.a_user_calls_unlike(user, tweet.id))
+                .rejects
+                .toMatchObject({
+                    message: expect.stringContaining('DynamoDB transaction error')
+                })
+
+
+            })
+        })
+
 
 
     })
