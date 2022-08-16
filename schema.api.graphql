@@ -141,7 +141,7 @@ type Reply implements ITweet {
     inReplyToUsers: [IProfile!]
 }
 
-type ReTweet implements ITweet {
+type Retweet implements ITweet {
     id: ID!
     profile: IProfile!
     createdAt: AWSDateTime

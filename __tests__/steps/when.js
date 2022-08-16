@@ -259,6 +259,22 @@ const a_user_calls_tweet = async (user, text) => {
       return newTweet
 }
 
+const we_invoke_retweet = (username, tweetId) => {
+  const handler = require('../../functions/retweet').handler
+  const context = {}
+  const event = {
+    identity: {
+      username
+    },
+    arguments: {
+      tweetId
+    }
+  }
+  return  await handler(event, context)
+
+}
+
+
 
 const a_user_calls_getTweets = async (user,userId, limit, nextToken)=> {
   const getTweets = `query getTweets($userId: ID!, $limit: Int!, $nextToken: String) {
@@ -367,6 +383,7 @@ module.exports = {
     a_user_calls_getMyTimeline,
     a_user_calls_like,
     a_user_calls_unlike,
-    a_user_calls_getLikes
+    a_user_calls_getLikes,
+    we_invoke_retweet
 
 }
